@@ -137,8 +137,6 @@ void enter_vnode_info(
      * Save device number and path
      */
     switch (Ntype) {
-    case N_FIFO:
-        break;
     case N_CHR:
     case N_BLK:
         Lf->rdev = vip->vip_vi.vi_stat.vst_rdev;
@@ -324,6 +322,7 @@ static void process_pipe_common(struct lsof_context *ctx,
     size_t sz;
 
     Lf->type = LSOF_FILE_PIPE;
+    enter_file_info(ctx, &pi->pfi);
     /*
      * Enter the pipe handle as the device.
      */
